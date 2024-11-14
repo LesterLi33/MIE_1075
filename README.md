@@ -11,3 +11,7 @@ pip intall numpy
 ```
 pip install pygame
 ```
+- Scikit-Image
+```
+pip install -U scikit-image
+```

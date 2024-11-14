@@ -3,5 +3,11 @@ Project Name:
 Shopping Assistant Robot:
 
 #### Dependencies
-- Numpy `pip intall numpy'
-- Pygame `pip install pygame
+- Numpy 
+```
+pip intall numpy
+```
+- Pygame 
+```
+pip install pygame
+```

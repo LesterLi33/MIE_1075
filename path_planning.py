@@ -2,42 +2,14 @@ import numpy as np
 from skimage.draw import line
 
 import pygame
-from pygame.locals import *
+from game import Pygame_Window
 
 class Nodes:
-    def __init__(self, point, parent_id):
+    def __init__(self, point, parent_id, cost=None):
         self.point = point
         self.parent = parent_id
-        
-
-class Pygame_Window:
-    def __init__(self):
-        
-        self.size = self.width, self.height = 900, 766
-
-        pygame.init()
-        pygame.display.set_caption('RRT* Visualization')
-        
-        layout_img = pygame.image.load('layout.png')
-        layout_img = pygame.transform.scale(layout_img, self.size)
-        self.screen = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
-        self.screen.blit(layout_img, (0,0))
-        pygame.display.flip()
-
-    #draw a point on the map
-    def add_node(self, point, color=(102, 178, 255), radius=2, width=2):
-        pixel_color = self.screen.get_at(point)
-        if pixel_color == (255, 255, 255, 255):
-            pygame.draw.circle(self.screen, color, point, radius, width)
-            pygame.display.update()
-
-    #Draw line between two points
-    def add_line(self, start, end, color=(0, 0, 0, 255), width=1):
-        pygame.draw.line(self.screen, color, start, end, width)
-        pygame.display.update()
-    
-    def on_cleanup(self):
-        pygame.quit()
+        self.cost = cost
+        self.childeren = []
 
 class RRT:
     def __init__(self):
@@ -141,6 +113,9 @@ class RRT:
                     break
             i += 1
             
+class RRT_Star(RRT):
+    def __init__(self):
+        super().__init__()
 
 rrt = RRT()
 rrt.planning()
